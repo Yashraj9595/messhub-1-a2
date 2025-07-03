@@ -20,6 +20,21 @@ export function InstallPrompt({
   const [showIOSPrompt, setShowIOSPrompt] = useState(false)
   const [dismissed, setDismissed] = useState(false)
   
+  // Track visits to help trigger Chrome's install prompt
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !isStandalone) {
+      const visits = parseInt(localStorage.getItem('site-visits') || '0')
+      const lastVisit = localStorage.getItem('last-visit')
+      const now = new Date().toISOString()
+      
+      // If it's been more than 5 minutes since last visit
+      if (!lastVisit || new Date(lastVisit).getTime() + 5 * 60 * 1000 < Date.now()) {
+        localStorage.setItem('site-visits', (visits + 1).toString())
+        localStorage.setItem('last-visit', now)
+      }
+    }
+  }, [isStandalone])
+  
   // Check if we should show the iOS install prompt
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -38,6 +53,9 @@ export function InstallPrompt({
       const installed = await showInstallPrompt()
       if (installed) {
         console.log('App was installed successfully')
+        // Clear visit tracking after successful installation
+        localStorage.removeItem('site-visits')
+        localStorage.removeItem('last-visit')
       }
     } catch (error) {
       console.error('Error installing app:', error)
@@ -59,6 +77,10 @@ export function InstallPrompt({
   if (isStandalone || (!isInstallable && !showIOSPrompt) || dismissed) {
     return null
   }
+  
+  // Get visit count
+  const visits = typeof window !== 'undefined' ? 
+    parseInt(localStorage.getItem('site-visits') || '0') : 0
   
   return (
     <div className={`fixed ${position === 'top' ? 'top-0' : 'bottom-0'} left-0 right-0 z-50 p-4 ${className}`}>
@@ -85,7 +107,9 @@ export function InstallPrompt({
               </p>
             ) : (
               <p className="text-sm text-muted-foreground">
-                Install MessHub for a better experience
+                {visits < 2 ? 
+                  `Visit ${2 - visits} more time(s) to enable installation` :
+                  'Install MessHub for a better experience'}
               </p>
             )}
           </div>
@@ -95,6 +119,7 @@ export function InstallPrompt({
           <Button 
             className="w-full mt-4 bg-primary-blue hover:bg-dark-blue text-white"
             onClick={handleInstall}
+            disabled={visits < 2}
           >
             Install Now
           </Button>
