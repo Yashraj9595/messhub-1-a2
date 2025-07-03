@@ -58,7 +58,7 @@ export function WelcomeScreen({ onNavigate }: WelcomeScreenProps) {
                 <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-blue to-dark-blue bg-clip-text text-transparent">
                   MessMaster
                 </h1>
-                <p className="text-muted-foreground font-medium text-base">Your Complete Mess Management Solution</p>
+                <p className="text-muted-foreground font-medium text-base">Your Complete Mess Management Solution..</p>
 
                 <div className="flex items-center justify-center gap-4 text-sm">
                   <div className="flex items-center gap-2 bg-primary-blue/10 px-3 py-1 rounded-full">
