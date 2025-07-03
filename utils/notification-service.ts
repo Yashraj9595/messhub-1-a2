@@ -15,8 +15,7 @@ const hasServiceWorkerSupport = isBrowser && 'serviceWorker' in navigator;
 const hasPushManagerSupport = isBrowser && 'PushManager' in window;
 
 // Public key for VAPID authentication (would be provided by your backend)
-// This is a placeholder and should be replaced with your actual VAPID public key
-const VAPID_PUBLIC_KEY = 'YOUR_VAPID_PUBLIC_KEY';
+const VAPID_PUBLIC_KEY = 'BF93TNDFO7jnVU_o2yi1WK1MgkQynLpCQ1YfYWcw7L84zO8wOQlds5s4S-Key_TocHNvMJDcibbvSddjMcl9s34';
 
 // Extended NotificationOptions to include vibrate property
 interface ExtendedNotificationOptions extends NotificationOptions {
