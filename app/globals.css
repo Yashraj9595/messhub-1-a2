@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 33% 98%;
+    --foreground: 210 50% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 50% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 50% 15%;
+    --primary: 203 54% 23%;  /* #145374 */
+    --primary-foreground: 0 0% 91%;
+    --secondary: 201 31% 49%;  /* #5588A3 */
+    --secondary-foreground: 210 50% 15%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 30% 45%;
+    --accent: 207 100% 15%;  /* #00334E */
+    --accent-foreground: 0 0% 91%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 210 20% 91%;
+    --input: 210 20% 91%;
+    --ring: 203 54% 23%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 207 100% 9%;  /* Darker version of #00334E */
+    --foreground: 0 0% 91%;
+    --card: 207 100% 12%;
+    --card-foreground: 0 0% 91%;
+    --popover: 207 100% 12%;
+    --popover-foreground: 0 0% 91%;
+    --primary: 203 54% 23%;  /* #145374 */
+    --primary-foreground: 0 0% 91%;
+    --secondary: 201 31% 49%;  /* #5588A3 */
+    --secondary-foreground: 0 0% 91%;
+    --muted: 207 100% 15%;
+    --muted-foreground: 210 20% 70%;
+    --accent: 207 100% 15%;  /* #00334E */
+    --accent-foreground: 0 0% 91%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 91%;
+    --border: 207 100% 20%;
+    --input: 207 100% 20%;
+    --ring: 203 54% 23%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.4);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.6);
+}
+
+/* Custom animations */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+/* Enhanced smooth theme transitions */
+* {
+  transition: background-color 0.4s ease-in-out, 
+              border-color 0.4s ease-in-out, 
+              color 0.4s ease-in-out,
+              opacity 0.4s ease-in-out,
+              box-shadow 0.4s ease-in-out;
+}
+
+/* Custom gradient backgrounds */
+.gradient-primary {
+  @apply bg-gradient-to-r from-brand-primary to-brand-dark;
+}
+
+.gradient-secondary {
+  @apply bg-gradient-to-r from-brand-secondary to-brand-primary;
+}
+
+/* Enhanced glass morphism effect */
+.glass {
+  @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-lg;
+}
+
+.dark .glass {
+  @apply bg-accent/20 border-white/10;
+}
+
+/* Custom utility classes */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary;
+}
+
+.hover-card {
+  @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+}
+
+.nav-item {
+  @apply transition-all duration-300 hover:bg-brand-primary/10 dark:hover:bg-brand-primary/20;
+}
+
+.button-gradient {
+  @apply bg-gradient-to-r from-brand-primary to-brand-secondary hover:from-brand-dark hover:to-brand-primary text-white shadow-md hover:shadow-lg transition-all duration-300;
+}
+
+/* Custom color utility classes */
+.bg-primary-blue {
+  background-color: #145374;
+}
+
+.bg-secondary-blue {
+  background-color: #5588A3;
+}
+
+.bg-dark-blue {
+  background-color: #00334E;
+}
+
+.text-primary-blue {
+  color: #145374;
+}
+
+.text-secondary-blue {
+  color: #5588A3;
+}
+
+.text-dark-blue {
+  color: #00334E;
+}
+
+.border-primary-blue {
+  border-color: #145374;
+}
+
+.border-secondary-blue {
+  border-color: #5588A3;
+}
+
+.border-dark-blue {
+  border-color: #00334E;
+}
+
+/* Fix for gradient text in Safari */
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
